@@ -1,0 +1,12 @@
+<div class="block-wrapper">
+  <div class="block-heading-wrapper">
+    <h3 class="block-heading">{{gender}}</h3>
+    <!--
+    -->
+    <hr class="block-line">
+  </div>
+  <div class="slider">1 / 5<br>></div>
+  <div class="boxes">
+    <app-clothes-box *ngFor="let box of clothesBoxes | genderFilter:gender" id={{box.id}}></app-clothes-box>
+  </div>
+</div>

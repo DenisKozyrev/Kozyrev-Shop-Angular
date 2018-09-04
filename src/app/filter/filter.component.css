@@ -1,0 +1,41 @@
+.filter-wrapper {
+  background-color: #f5f6f7;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 45px 0;
+  box-sizing: border-box;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.filter-checkboxes {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-checkbox {
+  margin-right: 10px;
+  color: #aa9b77;
+  border: 2px dotted;
+}
+.filter-checkbox-label {
+  font-family: MyriadPro;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.filter-button {
+  background-color: #aa9b77;
+  padding: 10px;
+  font-family: MyriadPro;
+  font-size: 20px;
+  color: #ece8e2;
+  outline: none;
+  cursor: pointer;
+}

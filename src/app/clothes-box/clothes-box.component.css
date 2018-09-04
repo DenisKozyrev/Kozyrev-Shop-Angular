@@ -1,0 +1,13 @@
+.box {
+  width: 300px;
+  height: 350px;
+  box-sizing: border-box;
+  background-color: #f5f6f7;
+  margin-top: 30px;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.box:hover {
+  outline: 6px solid #aa9b77;
+}
