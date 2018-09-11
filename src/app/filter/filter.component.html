@@ -1,21 +1,11 @@
 <div class="filter-wrapper">
   <form class="filter">
     <div class="filter-checkboxes">
-      <div class="checkbox">
-        <input class="filter-checkbox" type="checkbox" name="clothesfilter" value="men" #men (click)="toggle(men.checked,$event)"
-          id="men">
-        <label class="filter-checkbox-label" for="men">MEN</label>
-      </div>
-      <div class="checkbox">
-        <input class="filter-checkbox" type="checkbox" name="clothesfilter" value="women" id="women" #women (click)="toggle(women.checked,$event)">
-        <label class="filter-checkbox-label" for="women">WOMEN</label>
-      </div>
-      <div class="checkbox">
-        <input class="filter-checkbox" type="checkbox" name="clothesfilter" value="children" id="children" #children (click)="toggle(children.checked,$event)">
-        <label class="filter-checkbox-label" for="children">CHILDREN</label>
+      <div *ngFor="let category of productsCategory" class="checkbox">
+        <input class="filter-checkbox" type="checkbox" name="categoryCheckbox" value={{category.name}} (click)="onChooseCategory($event.target.checked,$event.target.value)">
+        <label class="filter-checkbox-label" for="men">{{category.name}}</label>
       </div>
     </div>
-    <button class="filter-button" type="button" name="clothesfilter">SEE ALL PRODUCTS</button>
+    <button class="filter-button" type="button" name="clothesfilterButton" (click)="chooseAllCategoties()">SEE ALL PRODUCTS</button>
   </form>
 </div>
-<app-clothes-block *ngFor="let gender of genderCollection | genderBlockFilter:gender" gender={{gender}}></app-clothes-block>

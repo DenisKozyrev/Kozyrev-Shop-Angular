@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClothesBlockComponent } from './clothes-block.component';
+import { CategoryBlockComponent } from './category-block.component';
 
-describe('ClothesBlockComponent', () => {
-  let component: ClothesBlockComponent;
-  let fixture: ComponentFixture<ClothesBlockComponent>;
+describe('CategoryBlockComponent', () => {
+  let component: CategoryBlockComponent;
+  let fixture: ComponentFixture<CategoryBlockComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClothesBlockComponent ]
+      declarations: [ CategoryBlockComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClothesBlockComponent);
+    fixture = TestBed.createComponent(CategoryBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

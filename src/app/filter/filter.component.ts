@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { ClothesService } from "../clothes.service";
-import { Clothes } from "../clothes";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { ProductsCategory } from "../productsCategory";
+import { ProductsService } from "../products.service";
 
 @Component({
   selector: "app-filter",
@@ -8,37 +8,62 @@ import { Clothes } from "../clothes";
   styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent implements OnInit {
-  public genderCollection: any[] = [];
+  productsCategory: ProductsCategory[] = [];
 
-  public clothesBoxes: Clothes[] = [];
+  filteredCategory: ProductsCategory[] = [];
 
-  public gender: any[] = [];
+  private categoriesName: string[] = [];
 
-  constructor(private clothesService: ClothesService) {}
+  @Output()
+  public chooseCategory = new EventEmitter();
+  @Output()
+  public allCategories = new EventEmitter();
 
-  getClothes(): void {
-    this.clothesBoxes = this.clothesService.getClothes();
-  }
+  public allCategfoeries$ = this.allCategories.asObservable();
 
-  genderBlockFilter(): void {
-    this.clothesBoxes.forEach(box => {
-      if (!this.genderCollection.includes(box.gender)) {
-        this.genderCollection.push(box.gender);
-      }
-    });
-  }
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.getClothes();
-    this.genderBlockFilter();
+    this.productsCategory = this.productsService.getProducts();
   }
 
-  public toggle(clothesfilter: boolean, event) {
-    if (clothesfilter) {
-      this.gender = [...this.gender, event.target.value];
+  onChooseCategory(filterChecked: boolean, filterValue) {
+    this.categoryFilter(filterChecked, filterValue);
+    this.chooseCategory.emit(this.filteredCategory);
+  }
+
+  chooseAllCategoties() {
+    this.categoriesName = [];
+    this.setFilteredProducts();
+    this.allCategories.emit(this.filteredCategory);
+    this.resetCheckboxes();
+  }
+
+  setFilteredProducts() {
+    if (this.categoriesName.length === 0) {
+      this.filteredCategory = [...this.productsCategory];
     } else {
-      this.gender.splice(this.gender.indexOf(event.target.value), 1);
-      this.gender = [...this.gender];
+      this.filteredCategory = this.categoriesName.map(category => {
+        return this.productsCategory.find(product => {
+          return product.name === category;
+        });
+      });
     }
+  }
+
+  categoryFilter(filterChecked: boolean, filterValue) {
+    if (filterChecked) {
+      this.categoriesName.push(filterValue);
+    } else {
+      this.categoriesName.splice(this.categoriesName.indexOf(filterValue), 1);
+    }
+    this.setFilteredProducts();
+  }
+
+  resetCheckboxes() {
+    let checkboxes = document.getElementsByName("categoryCheckbox");
+    Array.from(checkboxes).forEach(checkbox => {
+      (checkbox as HTMLInputElement).checked = false;
+    });
   }
 }
