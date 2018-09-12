@@ -1,1 +1,4 @@
-<app-category *ngFor="let category of filteredCategory" [categoryName]='category.name' [productsCollection]='category.products'></app-category>
+<div class="categories">
+    <app-clothes-sorting></app-clothes-sorting>
+    <app-category *ngFor="let category of filteredCategory" [categoryName]='category.name ' [productsCollection]='category.products '></app-category>
+</div>

@@ -5,6 +5,6 @@
     <hr class="block-line">
   </div>
   <div class="boxes">
-    <app-product *ngFor="let product of productsCollection" [name]='product.name' [price]='product.price'></app-product>
+    <app-product *ngFor="let product of productsCollection" [product]='product'></app-product>
   </div>
 </div>

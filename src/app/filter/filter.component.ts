@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { ProductsCategory } from "../productsCategory";
-import { ProductsService } from "../products.service";
+import { ProductsCategory } from "../shared/productsCategory";
+import { filteredCategoryService } from "../shared/filtered-category.service";
 
 @Component({
   selector: "app-filter",
@@ -8,62 +8,32 @@ import { ProductsService } from "../products.service";
   styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent implements OnInit {
-  productsCategory: ProductsCategory[] = [];
-
-  filteredCategory: ProductsCategory[] = [];
-
-  private categoriesName: string[] = [];
+  productCategories: ProductsCategory[] = [];
 
   @Output()
   public chooseCategory = new EventEmitter();
   @Output()
-  public allCategories = new EventEmitter();
+  public removeCategory = new EventEmitter();
+  @Output()
+  public chooseAllCategories = new EventEmitter();
 
-  public allCategfoeries$ = this.allCategories.asObservable();
+  // public allCategfoeries$ = this.allCategories.asObservable();
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private filteredCategoryService: filteredCategoryService) {}
 
   ngOnInit() {
-    this.productsCategory = this.productsService.getProducts();
+    this.productCategories = this.filteredCategoryService.getProducts();
   }
 
-  onChooseCategory(filterChecked: boolean, filterValue) {
-    this.categoryFilter(filterChecked, filterValue);
-    this.chooseCategory.emit(this.filteredCategory);
+  chooseCategoryName(filterChecked: boolean, filterValue: string) {
+    if (filterChecked) {
+      this.chooseCategory.emit(filterValue);
+    } else {
+      this.removeCategory.emit(filterValue);
+    }
   }
 
   chooseAllCategoties() {
-    this.categoriesName = [];
-    this.setFilteredProducts();
-    this.allCategories.emit(this.filteredCategory);
-    this.resetCheckboxes();
-  }
-
-  setFilteredProducts() {
-    if (this.categoriesName.length === 0) {
-      this.filteredCategory = [...this.productsCategory];
-    } else {
-      this.filteredCategory = this.categoriesName.map(category => {
-        return this.productsCategory.find(product => {
-          return product.name === category;
-        });
-      });
-    }
-  }
-
-  categoryFilter(filterChecked: boolean, filterValue) {
-    if (filterChecked) {
-      this.categoriesName.push(filterValue);
-    } else {
-      this.categoriesName.splice(this.categoriesName.indexOf(filterValue), 1);
-    }
-    this.setFilteredProducts();
-  }
-
-  resetCheckboxes() {
-    let checkboxes = document.getElementsByName("categoryCheckbox");
-    Array.from(checkboxes).forEach(checkbox => {
-      (checkbox as HTMLInputElement).checked = false;
-    });
+    this.chooseAllCategories.emit();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductsService } from "./products.service";
-import { ProductsCategory } from "./productsCategory";
+import { filteredCategoryService } from "./shared/filtered-category.service";
+import { ProductsCategory } from "./shared/productsCategory";
 
 @Component({
   selector: "app-root",
@@ -10,28 +10,26 @@ import { ProductsCategory } from "./productsCategory";
 export class AppComponent implements OnInit {
   title = "KozyrevShop";
 
-  productsCategory: ProductsCategory[] = [];
-
   filteredCategory: ProductsCategory[] = [];
 
-  constructor(private ProductsService: ProductsService) {}
+  constructor(private filteredCategoryService: filteredCategoryService) {}
 
   ngOnInit() {
-    this.getProduct();
+    this.filteredCategory = this.filteredCategoryService.getfilteredCategories();
   }
 
-  getProduct(): void {
-    this.productsCategory = this.ProductsService.getProducts();
-    this.filteredCategory = [...this.productsCategory];
+  chooseCategory(filterValue: string) {
+    this.filteredCategoryService.setCategoryName(filterValue);
+    this.filteredCategory = this.filteredCategoryService.getfilteredCategories();
   }
 
-  chooseCategory(filteredCategory: ProductsCategory[]) {
-    this.filteredCategory = filteredCategory;
-    console.log("choose", this.filteredCategory);
+  removeCategory(filterValue: string) {
+    this.filteredCategoryService.removeCategoryName(filterValue);
+    this.filteredCategory = this.filteredCategoryService.getfilteredCategories();
   }
 
-  chooseAllCategories(filteredCategory: ProductsCategory[]) {
-    this.filteredCategory = filteredCategory;
-    console.log("all", this.filteredCategory);
+  chooseAllCategories() {
+    this.filteredCategoryService.chooseAllCategoties();
+    this.filteredCategory = this.filteredCategoryService.getfilteredCategories();
   }
 }

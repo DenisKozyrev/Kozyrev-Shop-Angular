@@ -1,5 +1,14 @@
-<div class="box">
-  <div class="size-&-color">{{name}}</div>
-  <div class="clothes-img">{{price}}</div>
-  <div class="name-&-price"></div>
+<div class="product">
+  <div class="size-and-color">
+    <p class="size">
+      {{product.size}}
+    </p>
+  </div>
+  <div class="clothes-img">
+    <img src={{product.image}}/>
+  </div>
+  <div class="name-and-price">
+    <p class="product-name">{{product.name}}</p>
+    <p class="product-price">{{product.price | currency :'EUR'}}</p>
+  </div>
 </div>

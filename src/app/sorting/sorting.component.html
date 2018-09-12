@@ -1,3 +1,8 @@
-<p>
-  clothes-sorting works!
-</p>
+<div class="sorting">
+  <label class="sorting-label">SORT BY:</label>
+  <select id='sortingSelect' class="sorting-select">
+    <option value="name">Name</option>
+    <option id="price" value="price">Price</option>
+  </select>
+  <button class="sorting-button" (click)="chooseSortingValue()">SORT</button>
+</div>

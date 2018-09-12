@@ -2,6 +2,6 @@
     <h1 class="main-heading">Kozyrev Shop</h1>
 </header>
 <main>
-    <app-filter (chooseCategory)="chooseCategory($event)" (allCategories)='chooseAllCategories($event)'></app-filter>
+    <app-filter (chooseCategory)="chooseCategory($event)" (removeCategory)="removeCategory($event)" (chooseAllCategories)='chooseAllCategories()'></app-filter>
     <app-category-block [filteredCategory]='filteredCategory'></app-category-block>
 </main>

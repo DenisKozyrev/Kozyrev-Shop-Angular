@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Product } from "../shared/product";
 
 @Component({
   selector: "app-product",
@@ -7,9 +8,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ProductComponent implements OnInit {
   @Input()
-  name: string = "";
-  @Input()
-  price: string = "";
+  product: Product[];
 
   constructor() {}
 
