@@ -1,0 +1,39 @@
+<div class="back-to-home-page-block">
+  <div class="back-home-link-block">
+    <a class="back-home-link" routerLink=''>&lt;</a>
+    <span class="back-home-link-label">BACK TO CATALOG</span>
+  </div>
+</div>
+<div class="product-wrapper">
+  <div class="product-name">
+    <h3 class="product-heading">{{product.name}}</h3>
+    <hr class="block-line">
+  </div>
+  <div class="product">
+    <div class="clothes-img">
+      <img src={{product.image}} width='350' height="450" />
+    </div>
+    <div class="product-info">
+      <div class="info-block">
+        <p class="product-price">
+          {{product.price | currency :'EUR'}}
+        </p>
+        <span>PRICE</span>
+      </div>
+      <div class="info-block">
+        <div class="colors">
+          <p class="product-color" [style]='product.color'></p>
+          <p class="product-color" [style]='product.color'></p>
+          <p class="product-color" [style]='product.color'></p>
+        </div>
+        <span>COLORS</span>
+      </div>
+      <div class="info-block">
+        <p class="size">
+          {{product.size}}
+        </p>
+        <span> SIZES</span>
+      </div>
+    </div>
+  </div>
+</div>

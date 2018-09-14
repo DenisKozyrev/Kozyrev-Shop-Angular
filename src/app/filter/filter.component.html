@@ -2,7 +2,7 @@
   <form class="filter">
     <div class="filter-checkboxes">
       <div *ngFor="let category of productCategories" class="checkbox">
-        <input class="filter-checkbox" type="checkbox" name="categoryCheckbox" value={{category.name}} (click)="chooseCategoryName($event.target.checked,$event.target.value)">
+        <input class="filter-checkbox" type="checkbox" name="categoryCheckbox" value={{category.name}} (click)="setCheckboxesState($event.target.checked,$event.target.value)">
         <label class="filter-checkbox-label" for="men">{{category.name}}</label>
       </div>
     </div>

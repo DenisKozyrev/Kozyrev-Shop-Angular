@@ -1,14 +1,18 @@
-<div class="product">
-  <div class="size-and-color">
-    <p class="size">
-      {{product.size}}
-    </p>
-  </div>
-  <div class="clothes-img">
-    <img src={{product.image}}/>
-  </div>
-  <div class="name-and-price">
-    <p class="product-name">{{product.name}}</p>
-    <p class="product-price">{{product.price | currency :'EUR'}}</p>
-  </div>
+<div>
+  <a class="product-link" routerLink='product' [queryParams]="product">
+    <div class="product">
+      <div class="size-and-color">
+        <p class="size">
+          {{product.size}}
+        </p>
+      </div>
+      <div class="clothes-img">
+        <img src={{product.image}}/>
+      </div>
+      <div class="name-and-price">
+        <p class="product-name">{{product.name}}</p>
+        <p class="product-price">{{product.price | currency :'EUR'}}</p>
+      </div>
+    </div>
+  </a>
 </div>

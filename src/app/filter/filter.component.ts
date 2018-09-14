@@ -10,14 +10,7 @@ import { filteredCategoryService } from "../shared/filtered-category.service";
 export class FilterComponent implements OnInit {
   productCategories: ProductsCategory[] = [];
 
-  @Output()
-  public chooseCategory = new EventEmitter();
-  @Output()
-  public removeCategory = new EventEmitter();
-  @Output()
-  public chooseAllCategories = new EventEmitter();
-
-  // public allCategfoeries$ = this.allCategories.asObservable();
+  private categoryNames: string[] = [];
 
   constructor(private filteredCategoryService: filteredCategoryService) {}
 
@@ -25,15 +18,22 @@ export class FilterComponent implements OnInit {
     this.productCategories = this.filteredCategoryService.getProducts();
   }
 
-  chooseCategoryName(filterChecked: boolean, filterValue: string) {
+  setCheckboxesState(filterChecked: boolean, filterValue: string) {
+    this.categoryNames = this.setCategoryName(filterChecked, filterValue);
+    this.filteredCategoryService.setCheckboxesState(this.categoryNames);
+  }
+
+  setCategoryName(filterChecked: boolean, filterValue: string) {
+    let categoryNames = [...this.categoryNames];
     if (filterChecked) {
-      this.chooseCategory.emit(filterValue);
+      categoryNames.push(filterValue);
     } else {
-      this.removeCategory.emit(filterValue);
+      categoryNames.splice(categoryNames.indexOf(filterValue), 1);
     }
+    return categoryNames;
   }
 
   chooseAllCategoties() {
-    this.chooseAllCategories.emit();
+    this.filteredCategoryService.chooseAllCategoties();
   }
 }

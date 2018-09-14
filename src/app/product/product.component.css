@@ -6,12 +6,22 @@
   height: 350px;
   box-sizing: border-box;
   background-color: #f5f6f7;
-  margin: 50px;
   padding: 20px;
+  cursor: pointer;
 }
 
-.box:hover {
+.product:hover {
   outline: 6px solid #aa9b77;
+}
+
+.product-link {
+  display: block;
+  text-decoration: none;
+  margin: 50px;
+}
+
+.size {
+  color: black;
 }
 
 .name-and-price {
@@ -24,6 +34,7 @@
 }
 .product-price {
   font-weight: bold;
+  color: #000;
 }
 
 .clothes-img {
