@@ -5,7 +5,28 @@ export const PRODUCTS: ProductsCategory[] = [
     name: "Men",
     products: [
       {
-        name: "B-SHIRT",
+        name: "F-SHIRT",
+        color: "background-color:black",
+        price: 5.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "G-SHIRT",
+        color: "#000",
+        price: 3.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "E-SHIRT",
+        color: "#000",
+        price: 4.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "D-SHIRT",
         color: "background-color:black",
         price: 5.0,
         size: "S,M,L",
@@ -13,15 +34,22 @@ export const PRODUCTS: ProductsCategory[] = [
       },
       {
         name: "A-SHIRT",
-        color: "#000",
-        price: 3.0,
+        color: "background-color:black",
+        price: 5.0,
         size: "S,M,L",
         image: "./src/assets/images/product1.png"
       },
       {
         name: "C-SHIRT",
-        color: "#000",
-        price: 4.0,
+        color: "background-color:black",
+        price: 5.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "B-SHIRT",
+        color: "background-color:black",
+        price: 5.0,
         size: "S,M,L",
         image: "./src/assets/images/product1.png"
       }
@@ -50,6 +78,20 @@ export const PRODUCTS: ProductsCategory[] = [
         price: 8.0,
         size: "S,M,L",
         image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "B-GIACKET",
+        color: "#000",
+        price: 10.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "B-GIACKET",
+        color: "#000",
+        price: 10.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
       }
     ]
   },
@@ -74,6 +116,20 @@ export const PRODUCTS: ProductsCategory[] = [
         name: "C-SHOES",
         color: "#000",
         price: 10.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "B-SHOES",
+        color: "#000",
+        price: 15.0,
+        size: "S,M,L",
+        image: "./src/assets/images/product1.png"
+      },
+      {
+        name: "B-SHOES",
+        color: "#000",
+        price: 15.0,
         size: "S,M,L",
         image: "./src/assets/images/product1.png"
       }

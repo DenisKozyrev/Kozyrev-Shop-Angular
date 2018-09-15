@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { PRODUCTS } from "./mock-products";
 import { ProductsCategory } from "./productsCategory";
 import { Subject } from "rxjs";
+import { element } from "protractor";
 
 @Injectable({
   providedIn: "root"
 })
 export class filteredCategoryService {
-  products: ProductsCategory[] = PRODUCTS;
+  productsCategory: ProductsCategory[] = PRODUCTS;
 
   filteredCategories$: Subject<ProductsCategory[]> = new Subject<
     ProductsCategory[]
@@ -18,7 +19,7 @@ export class filteredCategoryService {
   categoryNames: string[] = [];
 
   getProducts(): ProductsCategory[] {
-    return this.products;
+    return this.productsCategory;
   }
 
   getfilteredCategories() {
@@ -40,24 +41,15 @@ export class filteredCategoryService {
 
   filterCategories(filteredCategories: ProductsCategory[], categoriesName) {
     if (this.categoryNames.length === 0) {
-      return (filteredCategories = [...this.products]);
+      this.resetCheckboxes();
+      return (filteredCategories = [...this.productsCategory]);
     } else {
       return (filteredCategories = this.categoryNames.map(category => {
-        return this.products.find(product => {
+        return this.productsCategory.find(product => {
           return product.name === category;
         });
       }));
     }
-  }
-
-  chooseAllCategoties() {
-    this.categoryNames = [];
-    this.filteredCategoriesBlock = this.filterCategories(
-      this.filteredCategoriesBlock,
-      this.categoryNames
-    );
-    this.pushToFilteredProductsSubject(this.filteredCategoriesBlock);
-    this.resetCheckboxes();
   }
 
   resetCheckboxes() {
@@ -67,27 +59,36 @@ export class filteredCategoryService {
     });
   }
 
-  filterProductsByName() {
-    this.products.forEach(category => {
-      category.products.sort((a, b) => {
-        let x = a.name.toLowerCase();
-        let y = b.name.toLowerCase();
-        if (x < y) {
-          return -1;
-        }
-        if (x > y) {
-          return 1;
-        }
-        return 0;
-      });
-    });
-  }
-
-  filterProductsByPrice() {
-    this.products.forEach(category => {
-      category.products.sort((a, b) => {
-        return a.price - b.price;
-      });
-    });
-  }
+  // filterProductsBy(sortingValue) {
+  //   let sortedProducts;
+  //   if (this.filteredCategoriesBlock.length === 0) {
+  //     sortedProducts = [...this.productsCategory];
+  //   } else {
+  //     sortedProducts = [...this.filteredCategoriesBlock];
+  //   }
+  //   if (sortingValue === "name") {
+  //     sortedProducts.forEach(category => {
+  //       category.products.sort((a, b) => {
+  //         let x = a.name.toLowerCase();
+  //         let y = b.name.toLowerCase();
+  //         if (x < y) {
+  //           return -1;
+  //         }
+  //         if (x > y) {
+  //           return 1;
+  //         }
+  //         return 0;
+  //       });
+  //     });
+  //     sortedProducts = [...sortedProducts];
+  //   } else if (sortingValue === "price") {
+  //     sortedProducts.forEach(category => {
+  //       category.products.sort((a, b) => {
+  //         return a.price - b.price;
+  //       });
+  //     });
+  //     sortedProducts = [...sortedProducts];
+  //   }
+  //   this.pushToFilteredProductsSubject(sortedProducts);
+  // }
 }

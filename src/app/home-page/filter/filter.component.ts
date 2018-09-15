@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { ProductsCategory } from "../shared/productsCategory";
-import { filteredCategoryService } from "../shared/filtered-category.service";
+import { ProductsCategory } from "../../shared/productsCategory";
+import { filteredCategoryService } from "../../shared/filtered-category.service";
 
 @Component({
   selector: "app-filter",
@@ -12,15 +12,18 @@ export class FilterComponent implements OnInit {
 
   private categoryNames: string[] = [];
 
+  @Output()
+  setCheckboxesState = new EventEmitter();
+
   constructor(private filteredCategoryService: filteredCategoryService) {}
 
   ngOnInit() {
     this.productCategories = this.filteredCategoryService.getProducts();
   }
 
-  setCheckboxesState(filterChecked: boolean, filterValue: string) {
+  onSetCheckboxesState(filterChecked: boolean, filterValue: string) {
     this.categoryNames = this.setCategoryName(filterChecked, filterValue);
-    this.filteredCategoryService.setCheckboxesState(this.categoryNames);
+    this.setCheckboxesState.emit(this.categoryNames);
   }
 
   setCategoryName(filterChecked: boolean, filterValue: string) {
@@ -34,6 +37,7 @@ export class FilterComponent implements OnInit {
   }
 
   chooseAllCategoties() {
-    this.filteredCategoryService.chooseAllCategoties();
+    this.categoryNames = [];
+    this.setCheckboxesState.emit(this.categoryNames);
   }
 }

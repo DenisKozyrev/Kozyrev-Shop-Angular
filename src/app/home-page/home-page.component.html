@@ -2,6 +2,6 @@
   <h1 class="main-heading">{{title}}</h1>
 </header>
 <main>
-  <app-filter></app-filter>
-  <app-category-block></app-category-block>
+  <app-filter (setCheckboxesState)="onSetCheckboxesState($event)"></app-filter>
+  <app-category-block [filteredCategoriesBlock]='filteredCategoriesBlock'></app-category-block>
 </main>

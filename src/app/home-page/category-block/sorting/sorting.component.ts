@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { filteredCategoryService } from "../shared/filtered-category.service";
+import { filteredCategoryService } from "../../../shared/filtered-category.service";
 @Component({
   selector: "app-clothes-sorting",
   templateUrl: "./sorting.component.html",
@@ -12,10 +12,6 @@ export class SortingComponent {
     let sortingValue = (document.getElementById(
       "sortingSelect"
     ) as HTMLInputElement).value;
-    if (sortingValue === "name") {
-      this.filteredCategoryService.filterProductsByName();
-    } else if (sortingValue === "price") {
-      this.filteredCategoryService.filterProductsByPrice();
-    }
+    // this.filteredCategoryService.filterProductsBy(sortingValue);
   }
 }

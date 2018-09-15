@@ -1,0 +1,10 @@
+<div class="block-wrapper">
+  <app-products-slider [productsCollection]='productsCollection' (pageChange)='pageChange($event)'></app-products-slider>
+  <div class="block-heading-wrapper">
+    <h3 class="block-heading">{{categoryName}}</h3>
+    <hr class="block-line">
+  </div>
+  <div class="boxes">
+    <app-product *ngFor="let product of currentPageProducts" [product]='product'></app-product>
+  </div>
+</div>
