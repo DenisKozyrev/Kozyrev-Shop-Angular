@@ -40,6 +40,10 @@
   cursor: pointer;
 }
 
+.filter-button:hover {
+  background-color: #c0bbaf;
+}
+
 .checkbox {
   margin-right: 5px;
 }

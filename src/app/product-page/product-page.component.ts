@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Product } from "../shared/product";
 
 @Component({
   selector: "app-product-page",

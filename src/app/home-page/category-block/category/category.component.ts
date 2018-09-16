@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Product } from "../../../shared/product";
+import { Subject } from "rxjs";
+import { filteredCategoryService } from "../../../shared/filtered-category.service";
 
 @Component({
   selector: "app-category",
@@ -13,8 +15,6 @@ export class CategoryComponent implements OnInit {
   public productsCollection: Product[] = [];
 
   currentPageProducts: Product[];
-
-  constructor() {}
 
   ngOnInit() {
     this.currentPageProducts = this.productsCollection.slice(0, 3);

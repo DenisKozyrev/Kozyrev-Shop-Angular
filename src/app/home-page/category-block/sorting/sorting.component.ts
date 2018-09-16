@@ -1,17 +1,21 @@
-import { Component } from "@angular/core";
-import { filteredCategoryService } from "../../../shared/filtered-category.service";
+import { Component, Output } from "@angular/core";
+import { EventEmitter } from "@angular/core";
+
 @Component({
   selector: "app-clothes-sorting",
   templateUrl: "./sorting.component.html",
   styleUrls: ["./sorting.component.css"]
 })
 export class SortingComponent {
-  constructor(private filteredCategoryService: filteredCategoryService) {}
+  @Output()
+  setSortingValue = new EventEmitter();
 
-  chooseSortingValue() {
-    let sortingValue = (document.getElementById(
+  sortingValue: string;
+
+  onSetSortingValue() {
+    this.sortingValue = (document.getElementById(
       "sortingSelect"
     ) as HTMLInputElement).value;
-    // this.filteredCategoryService.filterProductsBy(sortingValue);
+    this.setSortingValue.emit(this.sortingValue);
   }
 }

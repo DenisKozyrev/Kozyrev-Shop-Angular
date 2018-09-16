@@ -1,5 +1,11 @@
-import { Component, Input } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { ProductsCategory } from "../../shared/productsCategory";
+import { filteredCategoryService } from "../../shared/filtered-category.service";
 
 @Component({
   selector: "app-category-block",
@@ -9,4 +15,10 @@ import { ProductsCategory } from "../../shared/productsCategory";
 export class CategoryBlockComponent {
   @Input()
   filteredCategoriesBlock: ProductsCategory[];
+
+  constructor(private filteredCategoryService: filteredCategoryService) {}
+
+  onSetSotringValue(sortingValue) {
+    this.filteredCategoryService.filterProductsBy(sortingValue);
+  }
 }

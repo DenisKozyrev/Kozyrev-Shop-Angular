@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ProductsCategory } from "../shared/productsCategory";
 import { Subject } from "rxjs";
 import { filteredCategoryService } from "../shared/filtered-category.service";
@@ -6,25 +6,22 @@ import { filteredCategoryService } from "../shared/filtered-category.service";
 @Component({
   selector: "app-home-page",
   templateUrl: "./home-page.component.html",
-  styleUrls: ["./home-page.component.css"]
+  styleUrls: ["./home-page.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent implements OnInit {
   title = "KozyrevShop";
 
-  products: ProductsCategory[] = this.filteredCategoryService.getProducts();
-
-  filteredCategoriesBlock: ProductsCategory[] = this.products;
+  filteredCategoriesBlock: ProductsCategory[] = this.filteredCategoryService.getProducts();
 
   filteredCategories$: Subject<ProductsCategory[]>;
-
-  categoryNames: string[] = [];
 
   constructor(private filteredCategoryService: filteredCategoryService) {}
 
   ngOnInit() {
     this.filteredCategories$ = this.filteredCategoryService.getfilteredCategories();
     this.filteredCategories$.subscribe(data => {
-      this.filteredCategoriesBlock = data;
+      this.filteredCategoriesBlock = [...data];
     });
   }
 
